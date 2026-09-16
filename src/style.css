@@ -1,0 +1,801 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap");
+
+:root {
+  --bg: #0b1512;
+  --surface: #12211c;
+  --surface-2: #1b322b;
+  --border: #24433a;
+  --accent: #37b565;
+  --gold: #f0b73f;
+  --text: #f3f6f4;
+  --text-muted: #90a69c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Tajawal", Tahoma, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 56px 24px 40px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(55, 181, 101, 0.16), transparent 55%),
+    var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 900;
+  line-height: 1.15;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-title .ball {
+  font-size: 0.85em;
+}
+
+.hero-subtitle {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-size: 17px;
+  max-width: 46ch;
+}
+
+/* ---------- Content ---------- */
+.content {
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  flex: 1;
+}
+
+.state-message {
+  color: var(--text-muted);
+  padding: 24px 0;
+}
+
+.state-message.error {
+  color: #ff9b8a;
+  background: rgba(255, 100, 80, 0.08);
+  border: 1px solid rgba(255, 100, 80, 0.25);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+/* ---------- Field cards ---------- */
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.field-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px 20px 18px;
+  overflow: hidden;
+}
+
+.field-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+}
+
+.field-name {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.field-spec {
+  margin: 0 0 18px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.field-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.field-price .amount {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.field-price .unit {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---------- Contact bar (رقم الحجز) ---------- */
+.contact-bar {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.contact-link {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+}
+
+.contact-link.whatsapp {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- Price editing (admin) ---------- */
+.btn-edit-price {
+  margin-top: 12px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-edit-price:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.price-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.price-input {
+  width: 100px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.btn-save,
+.btn-cancel {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-save {
+  background: var(--accent);
+  color: #06180f;
+  font-weight: 700;
+}
+
+.btn-cancel {
+  background: none;
+  color: var(--text-muted);
+}
+
+/* ---------- Rules section (تعليمات الملعب) ---------- */
+.rules {
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+.rules-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+.rules-list {
+  margin: 0;
+  padding-right: 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* ---------- Admin login toggle ---------- */
+.admin-toggle {
+  color: var(--text-muted);
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* ---------- Login modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.modal-box h3 {
+  margin: 0 0 16px;
+}
+
+.modal-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-box input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.login-error {
+  color: #ff9b8a;
+  font-size: 13px;
+  margin: 0;
+}
+
+.btn-login {
+  background: var(--accent);
+  color: #06180f;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.modal-close {
+  margin-top: 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+/* ================= v2 additions ================= */
+
+.live-clock {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-book {
+  margin-top: 14px;
+  width: 100%;
+  background: var(--accent);
+  color: #06180f;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.closed-note {
+  margin-top: 14px;
+  color: #ff9b8a;
+  font-size: 13px;
+}
+
+/* ---------- بحث عن حجزي ---------- */
+.search-booking {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 160px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: inherit;
+}
+
+.search-form button {
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.booking-summary {
+  margin-top: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.booking-summary p {
+  margin: 6px 0;
+}
+
+.btn-cancel-self {
+  margin-top: 10px;
+  background: none;
+  border: 1px solid #ff9b8a;
+  color: #ff9b8a;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.state-message.success {
+  color: var(--accent);
+}
+
+/* ---------- Booking Modal ---------- */
+.booking-modal {
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.modal-x {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.field-label {
+  display: block;
+  margin: 12px 0 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.booking-modal input,
+.booking-modal textarea,
+.booking-modal select {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 9px 10px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.slots-day-label {
+  margin: 10px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.slot-available {
+  border-color: var(--accent);
+}
+
+.slot-available .slot-status {
+  color: var(--accent);
+}
+
+.slot-booked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #ff9b8a;
+}
+
+.slot-booked .slot-status {
+  color: #ff9b8a;
+}
+
+.slot-past {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.slot-status {
+  font-size: 11px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.modal-actions button {
+  flex: 1;
+}
+
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.review-table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.review-table td:first-child {
+  color: var(--text-muted);
+  width: 40%;
+}
+
+.success-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+
+.btn-whatsapp {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  background: #25d366;
+  color: #06180f;
+  font-weight: 900;
+  border-radius: 4px;
+  padding: 12px;
+  text-decoration: none;
+}
+
+/* ---------- Admin panel ---------- */
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 50;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.admin-panel {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bell-btn {
+  position: relative;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  background: #ff5a4e;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 10px;
+  padding: 1px 5px;
+  font-weight: 700;
+}
+
+.notif-dropdown {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 16px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.notif-item span {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-tabs button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+}
+
+.admin-tabs button.active {
+  color: var(--text);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.stats-grid.small {
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-card span {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.stat-card.gold span {
+  color: var(--gold);
+}
+
+.today-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.today-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 1fr 90px;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.report-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.report-filters input,
+.report-filters select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 7px 8px;
+  font-family: inherit;
+}
+
+.report-filters button {
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  height: 34px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.bookings-table th,
+.bookings-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.bookings-table th {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.admin-court-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.admin-court-card > div:first-child {
+  margin-bottom: 10px;
+}
