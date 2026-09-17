@@ -1,25 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
 
-:root {
-  --bg: #0b1512;
-  --surface: #12211c;
-  --surface-2: #1b322b;
-  --border: #24433a;
-  --accent: #37b565;
-  --gold: #f0b73f;
-  --text: #f3f6f4;
-  --text-muted: #90a69c;
-}
-
+/* =========================================================
+ * أساسيات عامة
+ * ========================================================= */
 * {
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Tajawal", Tahoma, sans-serif;
+  padding: 0;
+}
+
+body {
+  font-family: 'Tajawal', Tahoma, Arial, sans-serif;
+  background: #0b1210;
+  color: #eaf3ee;
+  -webkit-font-smoothing: antialiased;
 }
 
 .page {
@@ -28,416 +25,334 @@ body {
   flex-direction: column;
 }
 
-/* ---------- Hero ---------- */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 15px;
+}
+
+a {
+  color: inherit;
+}
+
+/* =========================================================
+ * الهيدر (Hero)
+ * ========================================================= */
 .hero {
-  padding: 56px 24px 40px;
-  background:
-    radial-gradient(120% 140% at 100% 0%, rgba(55, 181, 101, 0.16), transparent 55%),
-    var(--bg);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #10251a 0%, #0b1210 100%);
+  border-bottom: 1px solid #1c3327;
+  padding: 32px 16px 24px;
 }
 
 .hero-inner {
-  max-width: 880px;
+  max-width: 1000px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .hero-title {
   margin: 0;
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(22px, 6vw, 36px);
   font-weight: 900;
-  line-height: 1.15;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.hero-title .ball {
-  font-size: 0.85em;
+.ball {
+  font-size: 0.9em;
 }
 
 .hero-subtitle {
-  margin: 12px 0 0;
-  color: var(--text-muted);
-  font-size: 17px;
-  max-width: 46ch;
+  margin: 8px 0 0;
+  color: #9db8ac;
+  font-size: clamp(13px, 3.5vw, 16px);
 }
 
-/* ---------- Content ---------- */
+.live-clock {
+  margin: 10px 0 0;
+  color: #4ade80;
+  font-weight: 700;
+  font-size: clamp(12px, 3vw, 15px);
+}
+
+/* =========================================================
+ * المحتوى العام
+ * ========================================================= */
 .content {
-  max-width: 880px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 24px 64px;
+  padding: 24px 16px 40px;
   flex: 1;
 }
 
 .state-message {
-  color: var(--text-muted);
-  padding: 24px 0;
+  text-align: center;
+  color: #9db8ac;
+  padding: 16px;
+  font-size: 14px;
 }
 
 .state-message.error {
-  color: #ff9b8a;
-  background: rgba(255, 100, 80, 0.08);
-  border: 1px solid rgba(255, 100, 80, 0.25);
-  border-radius: 10px;
-  padding: 16px 18px;
+  color: #f87171;
 }
 
-/* ---------- Field cards ---------- */
+.state-message.success {
+  color: #4ade80;
+}
+
+/* =========================================================
+ * شبكة الملاعب — متجاوبة: عمود واحد بالموبايل، أكثر بالحاسوب
+ * ========================================================= */
 .fields-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 640px) {
+  .fields-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .field-card {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 20px 20px 18px;
-  overflow: hidden;
-}
-
-.field-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--accent);
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .field-name {
-  margin: 0 0 6px;
+  margin: 0;
   font-size: 19px;
   font-weight: 700;
 }
 
 .field-spec {
-  margin: 0 0 18px;
-  color: var(--text-muted);
-  font-size: 14px;
+  margin: 0;
+  color: #9db8ac;
+  font-size: 13px;
 }
 
 .field-price {
   display: flex;
   align-items: baseline;
   gap: 6px;
+  margin: 4px 0 8px;
 }
 
 .field-price .amount {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 900;
-  color: var(--gold);
-  font-variant-numeric: tabular-nums;
+  color: #ffd166;
 }
 
 .field-price .unit {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: #9db8ac;
 }
 
-/* ---------- Footer ---------- */
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 20px 24px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 13px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* ---------- Contact bar (رقم الحجز) ---------- */
-.contact-bar {
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
-.contact-link {
-  color: var(--text);
-  font-weight: 700;
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 1px;
-}
-
-.contact-link.whatsapp {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-/* ---------- Price editing (admin) ---------- */
-.btn-edit-price {
-  margin-top: 12px;
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.btn-edit-price:hover {
-  border-color: var(--accent);
-  color: var(--text);
-}
-
-.price-edit-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 4px;
-}
-
-.price-input {
-  width: 100px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 4px;
-  padding: 6px 8px;
-  font-family: inherit;
-  font-size: 14px;
-}
-
-.btn-save,
-.btn-cancel {
+.btn-book {
+  background: #22c55e;
+  color: #06210f;
   border: none;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.btn-save {
-  background: var(--accent);
-  color: #06180f;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
   font-weight: 700;
+  width: 100%;
+  transition: background 0.15s ease;
 }
 
-.btn-cancel {
-  background: none;
-  color: var(--text-muted);
+.btn-book:hover {
+  background: #16a34a;
 }
 
-/* ---------- Rules section (تعليمات الملعب) ---------- */
+.closed-note {
+  text-align: center;
+  color: #f87171;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+/* =========================================================
+ * التعليمات
+ * ========================================================= */
 .rules {
-  margin-top: 48px;
-  border-top: 1px solid var(--border);
-  padding-top: 28px;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
 }
 
 .rules-title {
-  font-size: 20px;
+  margin: 0 0 12px;
+  font-size: 17px;
   font-weight: 700;
-  margin: 0 0 14px;
 }
 
 .rules-list {
   margin: 0;
-  padding-right: 20px;
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 2;
-}
-
-/* ---------- Admin login toggle ---------- */
-.admin-toggle {
-  color: var(--text-muted);
-}
-
-.link-button {
-  background: none;
-  border: none;
-  color: var(--accent);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 13px;
-  text-decoration: underline;
-  padding: 0;
-}
-
-/* ---------- Login modal ---------- */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modal-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 24px;
-  width: 100%;
-  max-width: 320px;
-}
-
-.modal-box h3 {
-  margin: 0 0 16px;
-}
-
-.modal-box form {
+  padding-inline-start: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.modal-box input {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-family: inherit;
+  gap: 8px;
+  color: #cfe3d8;
   font-size: 14px;
+  line-height: 1.6;
 }
 
-.login-error {
-  color: #ff9b8a;
-  font-size: 13px;
-  margin: 0;
-}
-
-.btn-login {
-  background: var(--accent);
-  color: #06180f;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.modal-close {
-  margin-top: 12px;
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 13px;
-}
-
-/* ================= v2 additions ================= */
-
-.live-clock {
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--gold);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.btn-book {
-  margin-top: 14px;
-  width: 100%;
-  background: var(--accent);
-  color: #06180f;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  font-weight: 900;
-  font-size: 15px;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.closed-note {
-  margin-top: 14px;
-  color: #ff9b8a;
-  font-size: 13px;
-}
-
-/* ---------- بحث عن حجزي ---------- */
+/* =========================================================
+ * البحث عن حجزي
+ * ========================================================= */
 .search-booking {
-  margin-top: 40px;
-  border-top: 1px solid var(--border);
-  padding-top: 28px;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 14px;
+  padding: 20px;
 }
 
 .search-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .search-form input {
-  flex: 1;
-  min-width: 160px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-family: inherit;
+  flex: 1 1 180px;
+  min-width: 0;
+  background: #0b1210;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 10px;
+  padding: 12px;
 }
 
 .search-form button {
-  background: var(--accent);
+  flex: 0 0 auto;
+  background: #22c55e;
+  color: #06210f;
   border: none;
-  border-radius: 4px;
-  padding: 10px 18px;
+  border-radius: 10px;
+  padding: 12px 20px;
   font-weight: 700;
-  cursor: pointer;
-  font-family: inherit;
+}
+
+@media (max-width: 480px) {
+  .search-form {
+    flex-direction: column;
+  }
+  .search-form button {
+    width: 100%;
+  }
 }
 
 .booking-summary {
   margin-top: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 16px;
-}
-
-.booking-summary p {
-  margin: 6px 0;
+  padding-top: 16px;
+  border-top: 1px solid #1c3327;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .btn-cancel-self {
-  margin-top: 10px;
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid #f87171;
+  color: #f87171;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* =========================================================
+ * الفوتر
+ * ========================================================= */
+.footer {
+  border-top: 1px solid #1c3327;
+  padding: 18px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #9db8ac;
+  font-size: 13px;
+  text-align: center;
+}
+
+.link-button {
   background: none;
-  border: 1px solid #ff9b8a;
-  color: #ff9b8a;
-  border-radius: 4px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-family: inherit;
+  border: none;
+  color: #4ade80;
+  padding: 0;
+  font-size: 13px;
+  text-decoration: underline;
 }
 
-.state-message.success {
-  color: var(--accent);
-}
-
-/* ---------- Booking Modal ---------- */
-.booking-modal {
-  max-width: 480px;
-  max-height: 85vh;
+/* =========================================================
+ * النوافذ المنبثقة (Modals) — عامة
+ * ========================================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
   overflow-y: auto;
+}
+
+.modal-box {
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.modal-box form,
+.modal-box .modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-box input,
+.modal-box textarea,
+.modal-box select {
+  background: #0b1210;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+}
+
+.field-label {
+  font-size: 13px;
+  color: #9db8ac;
+  margin-top: 4px;
 }
 
 .modal-header {
@@ -447,157 +362,195 @@ body {
   margin-bottom: 14px;
 }
 
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
 .modal-x {
   background: none;
   border: none;
-  color: var(--text-muted);
+  color: #eaf3ee;
   font-size: 18px;
-  cursor: pointer;
+  line-height: 1;
 }
 
-.field-label {
-  display: block;
-  margin: 12px 0 4px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.booking-modal input,
-.booking-modal textarea,
-.booking-modal select {
+.modal-close {
+  margin-top: 14px;
   width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 4px;
-  padding: 9px 10px;
-  font-family: inherit;
-  font-size: 14px;
+  background: transparent;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.login-error {
+  color: #f87171;
+  font-size: 13px;
+  margin: 0;
+}
+
+.btn-login {
+  background: #22c55e;
+  color: #06210f;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 700;
+}
+
+/* =========================================================
+ * نافذة الحجز
+ * ========================================================= */
+.booking-modal {
+  max-width: 460px;
 }
 
 .slots-day-label {
-  margin: 10px 0;
-  color: var(--text-muted);
-  font-size: 14px;
+  text-align: center;
+  color: #9db8ac;
+  font-size: 13px;
+  margin: 6px 0 14px;
 }
 
 .slots-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 8px;
-  margin-top: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-inline-end: 4px;
+}
+
+@media (max-width: 400px) {
+  .slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .slot {
+  background: #0b1210;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 10px;
+  padding: 10px 6px;
+  font-size: 13px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 10px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.slot-available {
-  border-color: var(--accent);
-}
-
-.slot-available .slot-status {
-  color: var(--accent);
-}
-
-.slot-booked {
-  opacity: 0.5;
-  cursor: not-allowed;
-  border-color: #ff9b8a;
-}
-
-.slot-booked .slot-status {
-  color: #ff9b8a;
-}
-
-.slot-past {
-  opacity: 0.3;
-  cursor: not-allowed;
+  gap: 4px;
 }
 
 .slot-status {
-  font-size: 11px;
+  font-size: 10px;
+  color: #9db8ac;
+}
+
+.slot-available {
+  border-color: #22c55e;
+}
+
+.slot-booked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.slot-past {
+  opacity: 0.25;
+  cursor: not-allowed;
 }
 
 .modal-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 18px;
+  flex-direction: row !important;
+  margin-top: 10px;
 }
 
-.modal-actions button {
+.btn-cancel {
   flex: 1;
+  background: transparent;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.btn-save {
+  flex: 1;
+  background: #22c55e;
+  border: none;
+  color: #06210f;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 700;
 }
 
 .review-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
 .review-table td {
   padding: 8px 4px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
+  border-bottom: 1px solid #1c3327;
 }
 
 .review-table td:first-child {
-  color: var(--text-muted);
+  color: #9db8ac;
   width: 40%;
 }
 
 .success-title {
+  text-align: center;
+  color: #4ade80;
+  font-weight: 700;
   font-size: 18px;
-  font-weight: 900;
-  color: var(--accent);
-  margin: 0 0 6px;
+  margin: 0 0 14px;
 }
 
 .btn-whatsapp {
   display: block;
   text-align: center;
-  margin-top: 16px;
   background: #25d366;
-  color: #06180f;
-  font-weight: 900;
-  border-radius: 4px;
+  color: #06210f;
+  border-radius: 10px;
   padding: 12px;
+  font-weight: 700;
   text-decoration: none;
+  margin-top: 6px;
 }
 
-/* ---------- Admin panel ---------- */
+/* =========================================================
+ * لوحة الإدارة
+ * ========================================================= */
 .admin-overlay {
   position: fixed;
   inset: 0;
-  background: var(--bg);
-  z-index: 50;
+  background: #0b1210;
+  z-index: 200;
   overflow-y: auto;
-  padding: 20px;
 }
 
 .admin-panel {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 16px;
 }
 
 .admin-topbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 16px;
+}
+
+.admin-topbar h2 {
+  margin: 0;
+  font-size: clamp(16px, 4vw, 20px);
 }
 
 .admin-topbar-actions {
@@ -609,102 +562,114 @@ body {
 .bell-btn {
   position: relative;
   background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 8px 10px;
-  cursor: pointer;
-  font-size: 16px;
+  border: none;
+  font-size: 18px;
+  color: #eaf3ee;
 }
 
 .badge {
   position: absolute;
   top: -6px;
-  left: -6px;
-  background: #ff5a4e;
+  left: -8px;
+  background: #f87171;
   color: #fff;
-  border-radius: 999px;
   font-size: 10px;
+  border-radius: 999px;
   padding: 1px 5px;
-  font-weight: 700;
+  min-width: 16px;
+  text-align: center;
 }
 
 .notif-dropdown {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 12px;
   padding: 12px;
   margin-bottom: 16px;
-  max-height: 240px;
+  max-height: 280px;
   overflow-y: auto;
 }
 
 .notif-item {
-  border-bottom: 1px solid var(--border);
   padding: 8px 0;
+  border-bottom: 1px solid #1c3327;
   font-size: 13px;
 }
 
+.notif-item:last-child {
+  border-bottom: none;
+}
+
 .notif-item span {
-  color: var(--text-muted);
+  display: block;
+  color: #9db8ac;
   font-size: 11px;
+  margin-top: 2px;
 }
 
 .admin-tabs {
   display: flex;
   gap: 8px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  margin-bottom: 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
 }
 
 .admin-tabs button {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  padding: 10px 6px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 14px;
-  border-bottom: 2px solid transparent;
+  flex: 0 0 auto;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  color: #cfe3d8;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .admin-tabs button.active {
-  color: var(--text);
-  border-color: var(--accent);
+  background: #22c55e;
+  color: #06210f;
+  border-color: #22c55e;
   font-weight: 700;
+}
+
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
 }
 
 .stats-grid.small {
-  margin-bottom: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 .stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 12px;
   padding: 14px;
+  text-align: center;
   font-size: 12px;
-  color: var(--text-muted);
+  color: #9db8ac;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
 .stat-card span {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 900;
-  color: var(--text);
+  color: #eaf3ee;
 }
 
 .stat-card.gold span {
-  color: var(--gold);
+  color: #ffd166;
 }
 
 .today-list {
@@ -715,24 +680,36 @@ body {
 
 .today-row {
   display: grid;
-  grid-template-columns: 90px 1fr 1fr 90px;
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 8px 12px;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 10px;
+  padding: 10px 12px;
   font-size: 13px;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .today-row {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 4px;
+  }
+}
+
+.today-row.status-cancelled,
+.today-row.status-no_show {
+  opacity: 0.5;
 }
 
 .report-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  align-items: end;
-  margin-bottom: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  align-items: flex-end;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 12px;
   padding: 14px;
 }
 
@@ -741,61 +718,115 @@ body {
   flex-direction: column;
   gap: 4px;
   font-size: 12px;
-  color: var(--text-muted);
+  color: #9db8ac;
 }
 
 .report-filters input,
 .report-filters select {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 4px;
-  padding: 7px 8px;
-  font-family: inherit;
+  background: #0b1210;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
 }
 
 .report-filters button {
-  background: var(--accent);
+  background: #22c55e;
   border: none;
-  border-radius: 4px;
-  padding: 8px 14px;
-  cursor: pointer;
-  font-family: inherit;
+  color: #06210f;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 13px;
   font-weight: 700;
-  height: 34px;
+  height: fit-content;
 }
 
 .table-scroll {
+  width: 100%;
   overflow-x: auto;
+  border: 1px solid #1c3327;
+  border-radius: 12px;
 }
 
 .bookings-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
+  min-width: 720px;
 }
 
 .bookings-table th,
 .bookings-table td {
-  border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
+  padding: 10px;
   text-align: right;
+  border-bottom: 1px solid #1c3327;
   white-space: nowrap;
 }
 
 .bookings-table th {
-  color: var(--text-muted);
+  background: #10201a;
+  color: #9db8ac;
   font-weight: 700;
+  position: sticky;
+  top: 0;
+}
+
+.bookings-table select {
+  background: #0b1210;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 12px;
 }
 
 .admin-court-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: #10201a;
+  border: 1px solid #1c3327;
+  border-radius: 12px;
   padding: 16px;
-  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
 }
 
-.admin-court-card > div:first-child {
-  margin-bottom: 10px;
+.price-edit-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.price-edit-row input {
+  flex: 1 1 140px;
+  min-width: 0;
+  background: #0b1210;
+  border: 1px solid #24402f;
+  color: #eaf3ee;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.price-input {
+  max-width: 140px;
+}
+
+.price-edit-row .btn-save,
+.price-edit-row .btn-cancel {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .price-edit-row {
+    flex-direction: column;
+  }
+  .price-edit-row input,
+  .price-edit-row .btn-save,
+  .price-edit-row .btn-cancel {
+    width: 100%;
+  }
 }
